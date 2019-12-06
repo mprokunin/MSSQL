@@ -38,9 +38,8 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Get Top 
 		@retry_interval=0, 
 		@os_run_priority=0, @subsystem=N'TSQL', 
 		@command=N'declare 	@MailProfile sysname =  ''DBMailProfile''
-	, @Recip varchar(max) = ''mprokunin@renins.com'' 
---	, @CopyRecip varchar(max) = ''mprokunin@renins.com'' 
-	, @CopyRecip varchar(max) = ''WebDev_Integration@renins.com''
+	, @Recip varchar(max) = ''mprokunin@123.com'' 
+	, @CopyRecip varchar(max) = ''mprokunin@123.com'' 
 ----- Version 
 declare @version varchar(100) = ''ver. 1.2 Dec 3,2019''
 
