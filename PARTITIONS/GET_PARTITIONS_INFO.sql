@@ -87,8 +87,11 @@ go
 
 
 
-------------- Procedure to get Partition Details
-create procedure sp_partitioninfo as
+-------------- Procedure to get Partition Details
+create procedure sp_partitioninfo 
+ @SchemaName sysname = 'dbo'
+ , @TableName sysname = NULL
+as
 begin
 SELECT
 OBJECT_SCHEMA_NAME(pstats.object_id) AS SchemaName
@@ -118,9 +121,11 @@ INNER JOIN sys.indexes AS i ON pstats.object_id = i.object_id AND pstats.index_i
 INNER JOIN sys.index_columns AS ic ON i.index_id = ic.index_id AND i.object_id = ic.object_id AND ic.partition_ordinal > 0
 INNER JOIN sys.columns AS c ON pstats.object_id = c.object_id AND ic.column_id = c.column_id
 LEFT JOIN sys.partition_range_values AS prv ON pf.function_id = prv.function_id AND pstats.partition_number = (CASE pf.boundary_value_on_right WHEN 0 THEN prv.boundary_id ELSE (prv.boundary_id+1) END)
-ORDER BY TableName, PartitionNumber;
+where OBJECT_SCHEMA_NAME(pstats.object_id) = @SchemaName and OBJECT_NAME(pstats.object_id) like coalesce (@TableName, '%')
+ORDER BY SchemaName, TableName, PartitionNumber;
 end
 Go
+
 
 
 exec sp_partitioninfo
