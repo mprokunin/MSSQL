@@ -1,0 +1,17 @@
+Date		22.10.2018 17:50:15
+Log		Job History (Monitor_FailedJobs)
+
+Step ID		1
+Server		SQLIT01
+Job Name		Monitor_FailedJobs
+Step Name		1
+Duration		00:06:30
+Sql Severity	0
+Sql Message ID	0
+Operator Emailed	
+Operator Net sent	
+Operator Paged	
+Retries Attempted	0
+
+Message
+Executed as user: ICATON\prokunin. 0      MemberType          : Method  OverloadDefinitions : {System.Void Close()}  TypeNameOfValue     : System.Management.Automation.PSMethod  Value               : System.Void Close()  Name                : Close  IsInstance          : True          The job script encountered the following errors. These errors did not stop the script:  A job step received an error at line 31 in a PowerShell script. The corresponding line is '    $credential = New-Object System.Management.Automation.PsCredential( 'sa', ( Get-Content $server | ConvertTo-SecureString ) ) '. Correct the script and reschedule the job. The error information returned by PowerShell is: 'Key not valid for use in specified state.    '  A job step received an error at line 31 in a PowerShell script. The corresponding line is '    $credential = New-Object System.Management.Automation.PsCredential( 'sa', ( Get-Content $server | ConvertTo-SecureString ) ) '. Correct the script and reschedule the job. The error information returned by PowerShell is: 'Key not valid for use in specified state.    '.  Process Exit Code 0.  The step succeeded.
