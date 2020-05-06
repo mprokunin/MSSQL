@@ -142,12 +142,12 @@ sp_helpsubscriptionerrors @publisher = 'AL-SQL03\AOLFRONT'
 	, @subscriber_db = 'AtonBase_copy'
 
 
--- Выполнять на publisher
+-- Г‚Г»ГЇГ®Г«Г­ГїГІГј Г­Г  publisher
 -- Show transactions currently not distributed (those transactions remaining in the transaction log that have not been sent to the Distributor).
 exec mif..sp_repltrans 
 exec mif..sp_replshowcmds @maxtrans = 100
 
--- Очистить лог в Publisher
+-- ГЋГ·ГЁГ±ГІГЁГІГј Г«Г®ГЈ Гў Publisher
 EXECUTE mif..sp_repldone @xactid = NULL, @xact_segno = NULL, @numtrans = 0, @time = 0, @reset = 1;
 EXECUTE mif..sp_replflush; -- Always run it to free cache
 
