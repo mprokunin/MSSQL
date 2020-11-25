@@ -286,4 +286,4 @@ select count(policyID) from [DI_STAT_2017].[dbo].[policies]
 
 select policyID from [DI_STAT_2017].[dbo].[policies] where policyID <= 45000000 
 select top 100 * from [DI_STAT].[dbo].[policies] where policyID in (select policyID from [DI_STAT_2017].[dbo].[policies] )where policyID <= 45000000 )
-sp_who [rimos_nt_01\mprokunin]
+
