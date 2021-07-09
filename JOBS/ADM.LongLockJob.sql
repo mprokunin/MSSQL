@@ -9,7 +9,7 @@ declare 	@BlockingProcessCount  [int] = 10
 	, @TimeBlockedMS [int] = 10000	
 
 ----- Version 
-declare @version varchar(100) = 'ver. 2.0 Jul 9,2021'
+declare @version varchar(100) = 'ver. 2.1 Jul 9,2021'
 
 CREATE table #requests 
 	(	session_id			smallint
@@ -75,7 +75,7 @@ insert into #blocking
 		,	s.cpu_time				CPU
 		,	s.reads+s.writes		PhysicalIO
 		,	s.host_name				HostName
-		,	case when coalesce(r.database_id,0) = 0 then '' else db_name(coalesce(r.database_id,0)) end	DBName	
+		,	db_name(coalesce(r.database_id,s.database_id)) DBName
 		
 		,	isnull((select top 1 left(text, 150) from sys.dm_exec_sql_text(c.most_recent_sql_handle)),N'/* SQL Text not available */')	sql_text,
 		(select top 1 left(t.text,150) from sys.dm_exec_sessions s1
