@@ -9,7 +9,7 @@ declare 	@BlockingProcessCount  [int] = 10
 	, @TimeBlockedMS [int] = 10000	
 
 ----- Version 
-declare @version varchar(100) = 'ver. 2.1 Jul 9,2021'
+declare @version varchar(100) = 'ver. 2.2 Jul 12,2021'
 
 CREATE table #requests 
 	(	session_id			smallint
@@ -87,8 +87,11 @@ insert into #blocking
 	left join #requests r on r.session_id = s.session_id	
 	where 
 		(
-		r.blocking_session_id > 0 or 
-		s.session_id in (select blocking_session_id from #requests where blocking_session_id > 0)
+		s.session_id <> coalesce(r.blocking_session_id, 0) -- Exclude self blocking paralles queries
+		and (
+			r.blocking_session_id > 0 or 
+			s.session_id in (select blocking_session_id from #requests where blocking_session_id > 0)
+			)
 		)
 
 
