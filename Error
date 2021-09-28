@@ -1,0 +1,9 @@
+2021-09-28 12:23:48.056 Agent message code 545. Explicit value must be specified for identity column in table 'DDLEvents' either when IDENTITY_INSERT is set to ON or when a replication user is inserting into a NOT FOR REPLICATION identity column.
+2021-09-28 12:23:48.103 Category:COMMAND
+Source:  Failed Command
+Number:  
+Message: if COLUMNPROPERTY( OBJECT_ID('MSreplication_subscriptions'),'distribution_agent','AllowsNull') <> 1 BEGIN alter table MSreplication_subscriptions alter column distribution_agent sysname null end 
+2021-09-28 12:23:48.103 Category:NULL
+Source:  Microsoft OLE DB Driver for SQL Server
+Number:  545
+Message: Explicit value must be specified for identity column in table 'DDLEvents' either when IDENTITY_INSERT is set to ON or when a replication user is inserting into a NOT FOR REPLICATION identity column.
