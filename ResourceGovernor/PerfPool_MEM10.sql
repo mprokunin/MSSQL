@@ -88,7 +88,7 @@ FROM sys.dm_exec_sessions SDES
                 ON SDES.[group_id] = SDRGWG.[group_id]
         INNER JOIN sys.dm_resource_governor_resource_pools DRGRP
                 ON SDRGWG.[pool_id] = DRGRP.[pool_id]
-             where DRGRP.[name] = 'PerfPool'
+             where DRGRP.[name] = 'PerfRole_MEM10'
 
 --------------------------------
 
