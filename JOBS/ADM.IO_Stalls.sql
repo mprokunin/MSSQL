@@ -60,7 +60,7 @@ EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'ADM.io_stalls',
 		@description=N'Fix io stalls per whole server', 
 		@category_name=N'[Notifies]', 
 		@owner_login_name=N'sa', 
-		@notify_email_operator_name=N'prokunin@ffin.ru', @job_id = @jobId OUTPUT
+		@notify_email_operator_name=N'prokunin@abc.ru', @job_id = @jobId OUTPUT
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 /****** Object:  Step [io_stalls]    Script Date: 19.01.2022 11:39:44 ******/
 EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'io_stalls', 
