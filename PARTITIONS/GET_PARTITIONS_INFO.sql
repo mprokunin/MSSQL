@@ -6,7 +6,7 @@ select * from [dbo].[PartitionRanges]
 
 
 -- What objects are partitioned
-select object_name(object_id) TableName,i.name IndexName, ps.Name PartitionScheme, pf.name PartitionFunction
+select OBJECT_SCHEMA_NAME(object_id) as SchemaName, object_name(object_id) TableName,i.name IndexName, ps.Name PartitionScheme, pf.name PartitionFunction
  from sys.indexes i
  join sys.partition_schemes ps on ps.data_space_id = i.data_space_id
  join sys.partition_functions pf on pf.function_id = ps.function_id
@@ -86,10 +86,11 @@ select pf.name as [partition_function],
 go
 
 
-
+if exists (select 1 from sysobjects where name = 'sp_partitioninfo' and type = 'P') drop procedure sp_partitioninfo
+go
 -------------- Procedure to get Partition Details
-create procedure sp_partitioninfo 
- @SchemaName sysname = 'dbo'
+create procedure sp_partitioninfo
+ @SchemaName sysname = NULL
  , @TableName sysname = NULL
 as
 begin
@@ -117,15 +118,14 @@ INNER JOIN sys.destination_data_spaces AS dds ON pstats.partition_number = dds.d
 INNER JOIN sys.data_spaces AS ds ON dds.data_space_id = ds.data_space_id
 INNER JOIN sys.partition_schemes AS ps ON dds.partition_scheme_id = ps.data_space_id
 INNER JOIN sys.partition_functions AS pf ON ps.function_id = pf.function_id
-INNER JOIN sys.indexes AS i ON pstats.object_id = i.object_id AND pstats.index_id = i.index_id AND dds.partition_scheme_id = i.data_space_id AND i.type <= 1 /* Heap or Clustered Index */
+INNER JOIN sys.indexes AS i ON pstats.object_id = i.object_id AND pstats.index_id = i.index_id AND dds.partition_scheme_id = i.data_space_id AND (i.type <= 1 or i.type = 5)  /* Heap, Clustered Index or columnstore*/
 INNER JOIN sys.index_columns AS ic ON i.index_id = ic.index_id AND i.object_id = ic.object_id AND ic.partition_ordinal > 0
 INNER JOIN sys.columns AS c ON pstats.object_id = c.object_id AND ic.column_id = c.column_id
 LEFT JOIN sys.partition_range_values AS prv ON pf.function_id = prv.function_id AND pstats.partition_number = (CASE pf.boundary_value_on_right WHEN 0 THEN prv.boundary_id ELSE (prv.boundary_id+1) END)
-where OBJECT_SCHEMA_NAME(pstats.object_id) = @SchemaName and OBJECT_NAME(pstats.object_id) like coalesce (@TableName, '%')
+--where OBJECT_SCHEMA_NAME(pstats.object_id) = @SchemaName and OBJECT_NAME(pstats.object_id) like coalesce (@TableName, '%')
+where OBJECT_SCHEMA_NAME(pstats.object_id) like coalesce (@SchemaName, '%') and OBJECT_NAME(pstats.object_id) like coalesce (@TableName, '%')
 ORDER BY SchemaName, TableName, PartitionNumber;
 end
 Go
 
 
-
-exec sp_partitioninfo
