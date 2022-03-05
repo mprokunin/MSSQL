@@ -3,12 +3,6 @@ $dstpath = "\\1.1.1.1\Backup\DIB\PURCB\FULL"
 
 $logfile = "C:\ADM\CopyFULL.log"
 
-Function LogWrite
-{
-   Param ([string]$logstring)
-   Add-content $Logfile -value $logstring
-}
-
 Start-Transcript -Path $logfile
 
 $src = Get-ChildItem -Recurse -path $srcpath
@@ -23,11 +17,10 @@ foreach ($file in $src) {
     # this copies files which do not exist in the target
     if ($file.LastWriteTime -gt $targetFile.LastWriteTime) {
         Copy-Item $file.FullName $dstpath
-#      	LogWrite "$file.FullName copied to $dstpath"
 
-    Write-Host "$file.FullName copied to $dstpath"
+        Write-Host "$file.FullName copied to $dstpath"
 
-	  $i += 1
+	$i += 1
     	if ($i -gt 4) {
 	    break
     	}
