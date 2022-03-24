@@ -27,4 +27,9 @@ foreach ($file in $src) {
     }
 }
 
+# Delete files older than the $limit.
+
+$limit = (Get-Date).AddDays(-14)
+Get-ChildItem -Path $dstpath -Recurse -Force | Where-Object { !$_.PSIsContainer -and $_.CreationTime -lt $limit } | Remove-Item -Force
+
 Stop-Transcript
