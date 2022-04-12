@@ -96,7 +96,7 @@ and dsr.dbuser = 'MDA'
 
 select 'alter role MainEventLogUsers  add member ' + dsr.dbuser
 FROM #dbs_users_roles AS dsr
-where dsr.dbname = 'AtonBase' and dsr.dbrole = 'MainEventLogUsers';
+where dsr.dbname = 'ABCBase' and dsr.dbrole = 'MainEventLogUsers';
 
 -----------------------------
 
