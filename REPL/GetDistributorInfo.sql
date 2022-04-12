@@ -13,7 +13,7 @@ EXEC sp_get_distributor
 SELECT is_distributor FROM sys.servers WHERE name='repl_distributor' AND data_source=@@servername;  
 SELECT * FROM sys.servers WHERE name='repl_distributor'
 
-use AtonBase;  
+use ABCBase;  
 --Which databases on the Distributor are distribution databases?  
 SELECT name FROM sys.databases WHERE is_distributor = 1  
   
@@ -86,4 +86,3 @@ select top 1 *       from          MSrepl_transactions  where publisher_database
              not xact_id = 0x0
 
              order by xact_seqno desc
-
