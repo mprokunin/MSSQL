@@ -13,7 +13,7 @@ use [master]
 
 GO
 
-GRANT CONNECT ON ENDPOINT::[Hadr_endpoint] TO [ICATON\SQLUSER]
+GRANT CONNECT ON ENDPOINT::[Hadr_endpoint] TO [ICABC\SQLUSER]
 
 GO
 
@@ -133,7 +133,7 @@ end try
 begin catch
 	-- If the wait loop fails, do not stop execution of the alter database statement
 end catch
-ALTER DATABASE [ReportServer$SQL2008] SET HADR AVAILABILITY GROUP = [testhadr.aton.global];
+ALTER DATABASE [ReportServer$SQL2008] SET HADR AVAILABILITY GROUP = [testhadr.ABC.global];
 
 GO
 
@@ -153,7 +153,7 @@ if (serverproperty('IsHadrEnabled') = 1)
 	and (isnull((select member_state from master.sys.dm_hadr_cluster_members where upper(member_name COLLATE Latin1_General_CI_AS) = upper(cast(serverproperty('ComputerNamePhysicalNetBIOS') as nvarchar(256)) COLLATE Latin1_General_CI_AS)), 0) <> 0)
 	and (isnull((select state from master.sys.database_mirroring_endpoints), 1) = 0)
 begin
-    select @group_id = ags.group_id from master.sys.availability_groups as ags where name = N'testhadr.aton.global'
+    select @group_id = ags.group_id from master.sys.availability_groups as ags where name = N'testhadr.ABC.global'
 	select @replica_id = replicas.replica_id from master.sys.availability_replicas as replicas where upper(replicas.replica_server_name COLLATE Latin1_General_CI_AS) = upper(@@SERVERNAME COLLATE Latin1_General_CI_AS) and group_id = @group_id
 	while @conn <> 1 and @count > 0
 	begin
@@ -171,7 +171,7 @@ end try
 begin catch
 	-- If the wait loop fails, do not stop execution of the alter database statement
 end catch
-ALTER DATABASE [ReportServer$SQL2008TempDB] SET HADR AVAILABILITY GROUP = [testhadr.aton.global];
+ALTER DATABASE [ReportServer$SQL2008TempDB] SET HADR AVAILABILITY GROUP = [testhadr.ABC.global];
 
 GO
 
@@ -191,7 +191,7 @@ if (serverproperty('IsHadrEnabled') = 1)
 	and (isnull((select member_state from master.sys.dm_hadr_cluster_members where upper(member_name COLLATE Latin1_General_CI_AS) = upper(cast(serverproperty('ComputerNamePhysicalNetBIOS') as nvarchar(256)) COLLATE Latin1_General_CI_AS)), 0) <> 0)
 	and (isnull((select state from master.sys.database_mirroring_endpoints), 1) = 0)
 begin
-    select @group_id = ags.group_id from master.sys.availability_groups as ags where name = N'testhadr.aton.global'
+    select @group_id = ags.group_id from master.sys.availability_groups as ags where name = N'testhadr.ABC.global'
 	select @replica_id = replicas.replica_id from master.sys.availability_replicas as replicas where upper(replicas.replica_server_name COLLATE Latin1_General_CI_AS) = upper(@@SERVERNAME COLLATE Latin1_General_CI_AS) and group_id = @group_id
 	while @conn <> 1 and @count > 0
 	begin
@@ -209,11 +209,10 @@ end try
 begin catch
 	-- If the wait loop fails, do not stop execution of the alter database statement
 end catch
-ALTER DATABASE [TDB] SET HADR AVAILABILITY GROUP = [testhadr.aton.global];
+ALTER DATABASE [TDB] SET HADR AVAILABILITY GROUP = [testhadr.ABC.global];
 
 GO
 
 
 GO
-
 
