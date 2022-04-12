@@ -72,11 +72,8 @@ EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'io_stall
 		@command=N'----- Sender & Recipients
 
 declare 	@MailProfile sysname =  ''AL-SQL04\CRM''
-	, @Recip varchar(max) = ''SQLAdmin@aton.ru'' 
---	, @Recip varchar(max) = ''mikhail.prokunin@aton.ru'' 
---	, @CopyRecip varchar(max) = ''_finsupport@aton.ru;Nikolay.Mezhenskiy@aton.ru''
---	, @CopyRecip varchar(max) = ''_finsupport@aton.ru''
-	, @CopyRecip varchar(max) = ''mikhail.prokunin@aton.ru''
+	, @Recip varchar(max) = ''SQLAdmin@ABC.ru'' 
+	, @CopyRecip varchar(max) = ''mikhail.prokunin@ABC.ru''
 
 insert into master.dbo.io_stalls ([Database Name], [avg_read_stall_ms] ,[avg_write_stall_ms] ,[avg_io_stall_ms], [File Size (MB)],
 [physical_name], [type_desc], [io_stall_read_ms], [num_of_reads], [io_stall_write_ms], [num_of_writes], [io_stalls], 
