@@ -56,7 +56,7 @@ BEGIN
 
                   INSERT INTO Sales(SaleDate ,SaleAmount ,ItemsSold )
                   VALUES(@SaleDate,@SaleAmount,@ItemsSold);
-				  select @URL= 'http://sps101.moscow.aton.holding/sites/Private/en/Pages/Private_en_index.aspx' + '?Date=' + convert(varchar(30),@SaleDate) + '?Amount=' + convert(varchar(30),@SaleAmount) 
+				  select @URL= 'http://sps101.ABC.holding/sites/Private/en/Pages/Private_en_index.aspx' + '?Date=' + convert(varchar(30),@SaleDate) + '?Amount=' + convert(varchar(30),@SaleAmount) 
 						+ '?Items=' + convert(varchar(30),@ItemsSold)
 				  exec sp_GET @URL
             END
