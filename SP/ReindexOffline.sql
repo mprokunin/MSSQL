@@ -1,4 +1,4 @@
-USE D_NFO_ATON_3
+USE D_NFO_ABC_3
 GO
 
 /****** Object:  StoredProcedure [dbo].[ReindexOffline]    Script Date: 06.09.2018 13:42:12 ******/
@@ -81,5 +81,4 @@ AS
 	DEALLOCATE TestCursor
 
 GO
-
 
