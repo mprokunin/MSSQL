@@ -32,9 +32,22 @@ insert into master..replcounters (
 [Replication latency],
 [Replbeginlsn],
 [Replnextlsn]
-) select * from @rc where [database] ='AtonBase'
+) select * from @rc where [database] ='ABCBase'
 delete from master..replcounters where dt < dateadd(dd, -30, getdate())
 
 select * from master..replcounters 
 
 truncate table master..replcounters 
+© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
