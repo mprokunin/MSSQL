@@ -211,21 +211,21 @@ sp_configure 'remote proc trans', 1
 go
 reconfigure 
 go
---EXEC sys.sp_replicationdboption @dbname = 'AtonBase', @optname = 'publish', @value = 'false';  
+--EXEC sys.sp_replicationdboption @dbname = 'ABCBase', @optname = 'publish', @value = 'false';  
 use master;
 EXEC sys.sp_replicationdboption  
-    @dbname = 'AtonBase',  
+    @dbname = 'ABCBase',  
     @optname = 'publish',  
     @value = 'true';  
 
 EXEC sys.sp_replicationdboption  
-    @dbname = 'AtonBase',  
+    @dbname = 'ABCBase',  
     @optname = 'merge publish',  
     @value = 'true';  
 -- Command(s) completed successfully.
 
 EXEC sys.sp_replicationdboption  
-    @dbname = 'AtonBase',  
+    @dbname = 'ABCBase',  
     @optname = 'sync with backup',  
     @value = 'true';   -- True - wait for log backup, do not clear log
 
@@ -237,13 +237,13 @@ EXEC sys.sp_replicationdboption
 ---------------------------------------------------------------------------
 -- Create the replication publication, articles
 -- Adding the transactional publication
-use [AtonBase];
+use [ABCBase];
 -- @allow_initialize_from_backup = N'true', @immediate_sync = N'false',
 --sp_configure  'remote proc trans', 0;
 --reconfigure;
 
-exec sp_addpublication @publication = N'AtonBase_Pub', 
-	@description = N'Transactional publication of database ''AtonBase'' from Publisher ''AL-SQL05\BO''.', 
+exec sp_addpublication @publication = N'ABCBase_Pub', 
+	@description = N'Transactional publication of database ''ABCBase'' from Publisher ''AL-SQL05\BO''.', 
 	@sync_method = N'concurrent', @retention = 0, @allow_push = N'true', @allow_pull = N'true', @allow_anonymous = N'false', 
 	@enabled_for_internet = N'false', @snapshot_in_defaultfolder = N'true', @compress_snapshot = N'false', @ftp_port = 21, 
 	@allow_subscription_copy = N'false', @add_to_active_directory = N'false', @repl_freq = N'continuous', @status = N'active', 
@@ -259,7 +259,7 @@ exec sp_addpublication @publication = N'AtonBase_Pub',
 
 --Create the Snapshot Agent for the specified publication.
 exec sp_addpublication_snapshot 
-	@publication = N'AtonBase_Pub', 
+	@publication = N'ABCBase_Pub', 
 	@frequency_type = 1, 
 	@frequency_interval = 1, 
 	@frequency_relative_interval = 1, 
@@ -317,10 +317,10 @@ GO
 ----------------BEGIN: Script to be run at Subscriber 'BROWN'-----------------
 :connect BROWN
 
-use [AtonBase_copy];
+use [ABCBase_copy];
 /*
-exec sp_addsubscription @publication = N'AtonBase_Pub', 
-	@subscriber = N'BROWN', @destination_db = N'AtonBase_copy', 
+exec sp_addsubscription @publication = N'ABCBase_Pub', 
+	@subscriber = N'BROWN', @destination_db = N'ABCBase_copy', 
 	@subscription_type = N'Push', 
 	@sync_type = N'replication support only', 
 	@article = N'all', @update_mode = N'read only', @subscriber_type = 0
@@ -384,7 +384,7 @@ USE distribution;
 GO  
 EXEC sys.sp_redirect_publisher   
 @original_publisher = 'SQL105\AB',  
-    @publisher_db = 'AtonBase',  
+    @publisher_db = 'ABCBase',  
     @redirected_publisher = 'ABHADR';  
 
 
@@ -463,4 +463,3 @@ select @redirected_publisher;
 
 
 EXEC sp_helpdistributiondb;  
-
