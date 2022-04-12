@@ -13,7 +13,7 @@ StockTrans	159113666   34659184 KB	20317128 KB	14245504 KB	96552 KB
 
 sp_helpindex StockTrans
 
-USE [AtonBase]
+USE [ABCBase]
 GO
 ----
 ALTER TABLE [dbo].[StockTrans] DROP  CONSTRAINT [XPKStockTrans] 
@@ -60,4 +60,3 @@ GO
 ----
 drop index [TransDate_Index] ON [dbo].[StockTrans]
 go
-
