@@ -23,8 +23,8 @@ EXEC @ReturnCode =  msdb.dbo.sp_add_job @job_name=N'ADM.LoadAuditChanges_ABHADR'
 		@delete_level=0, 
 		@description=N'No description available.', 
 		@category_name=N'[Uncategorized (Local)]', 
-		@owner_login_name=N'ICATON\Prokunin', 
-		@notify_email_operator_name=N'SQLAdmin@aton.ru', @job_id = @jobId OUTPUT
+		@owner_login_name=N'ICABC\Prokunin', 
+		@notify_email_operator_name=N'SQLAdmin@ABC.ru', @job_id = @jobId OUTPUT
 IF (@@ERROR <> 0 OR @ReturnCode <> 0) GOTO QuitWithRollback
 /****** Object:  Step [Load Audit files SQL105\AB]    Script Date: 28.08.2019 20:38:31 ******/
 EXEC @ReturnCode = msdb.dbo.sp_add_jobstep @job_id=@jobId, @step_name=N'Load Audit files SQL105\AB', 
@@ -45,15 +45,15 @@ insert into #AF execute xp_cmdshell ''dir \\sql105\ChangesAudit$\*.sqlaudit /b/s
 delete from #AF where FileName is NULL
 --delete from #AF where FileName= ''\\sql105\ChangesAudit$\Changes_790D190A-A781-431A-B435-ABBE90B0BC74_0_131894041965190000.sqlaudit'' -- corrupted
 
-if exists (select file_name from [dbo].[audit_changes_ATONBASE_2019])
+if exists (select file_name from [dbo].[audit_changes_ABCBASE_2019])
 	begin
-	delete from #AF where FileName in (select file_name from [dbo].[audit_changes_ATONBASE_2019])
-	insert into #AF (FileName) select top 1 file_name from [dbo].[audit_changes_ATONBASE_2019] order by event_time desc
+	delete from #AF where FileName in (select file_name from [dbo].[audit_changes_ABCBASE_2019])
+	insert into #AF (FileName) select top 1 file_name from [dbo].[audit_changes_ABCBASE_2019] order by event_time desc
 	end
 --select * from #AF
 ---------------
 declare @FN nvarchar(260), @MAXEVENTTIME datetime, @cnt int = 0
-select @MAXEVENTTIME = coalesce(max(event_time), ''1970-01-01 00:00:00'') from [dbo].[audit_changes_ATONBASE_2019]
+select @MAXEVENTTIME = coalesce(max(event_time), ''1970-01-01 00:00:00'') from [dbo].[audit_changes_ABCBASE_2019]
 select @MAXEVENTTIME 
 DECLARE AUD_File CURSOR FOR 
 	SELECT FileName FROM #AF
@@ -64,7 +64,7 @@ FETCH NEXT FROM AUD_File INTO @FN
 WHILE @@FETCH_STATUS = 0 and @cnt < 1000 
 BEGIN  
 	select @FN
-	insert into [dbo].[audit_changes_ATONBASE_2019] select event_time, sequence_number, action_id, session_id, object_id, session_server_principal_name, database_principal_name, server_instance_name, database_name,schema_name, object_name, statement, file_name  
+	insert into [dbo].[audit_changes_ABCBASE_2019] select event_time, sequence_number, action_id, session_id, object_id, session_server_principal_name, database_principal_name, server_instance_name, database_name,schema_name, object_name, statement, file_name  
 		FROM sys.fn_get_audit_file (@FN,default,default) where event_time >= @MAXEVENTTIME and action_id <> ''VW'';  
 	select @cnt = @cnt + 1
 	FETCH NEXT FROM Aud_File INTO @FN
@@ -128,5 +128,4 @@ QuitWithRollback:
     IF (@@TRANCOUNT > 0) ROLLBACK TRANSACTION
 EndSave:
 GO
-
 
