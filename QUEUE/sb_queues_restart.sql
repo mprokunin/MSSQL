@@ -9,7 +9,7 @@ declare @Database table (
 
 insert into @Database (DbName)
 values
-	    ('AtonBase')
+	    ('ABCBase')
 	  , ('NotificationBase')
 ;
 
