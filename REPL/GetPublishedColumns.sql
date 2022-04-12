@@ -1,4 +1,4 @@
-use AtonBase;
+use ABCBase;
 
 --Which columns in the database are published?  (Run at Publisher)
 SELECT schema_name(tab.schema_id) as 'schema', tab.name AS published_object, col.name as 'ColName', col.is_replicated
@@ -23,7 +23,7 @@ on col.TABLE_NAME = tab.name and col.DATA_TYPE = 'timestamp'
 
 
 
-use AtonBase;
+use ABCBase;
 --Which objects in the database are published?  (Run at Publisher)
 SELECT name AS published_object, schema_id, is_published AS is_tran_published, is_merge_published, is_schema_published  
 FROM sys.tables WHERE is_published = 1 or is_merge_published = 1 or is_schema_published = 1  
@@ -35,11 +35,11 @@ SELECT name AS published_object, schema_id, 0, 0, is_schema_published
 FROM sys.views WHERE is_schema_published = 1; 
 
 
-USE AtonBase
+USE ABCBase
 go
 --Get detailed info for published articles (Run at Publisher)
 DECLARE @publication AS sysname;
-SET @publication = N'AtonBase_Pub';
+SET @publication = N'ABCBase_Pub';
 
 EXEC sp_helparticle
   @publication = @publication, @article = 'Asset'
