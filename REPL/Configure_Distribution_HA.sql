@@ -18,7 +18,7 @@ GO
 --select @@servername
 EXEC sys.sp_adddistributor  
     @distributor = 'tsql03\REPL',  
-    @password = 'Hfcghjcnhfybntkm'; 
+    @password = 'xxxxxxxxxxxxxxxxx'; 
 
 
 -- Add Distribution Database at Distributor
@@ -71,7 +71,7 @@ use master;
 
 EXEC sys.sp_adddistributor  
     @distributor = 'tsql05\REPL',  
-    @password = 'Hfcghjcnhfybntkm'; 
+    @password = 'xxxxxxxxxxxxxxxx'; 
 
 
 ------------------------
