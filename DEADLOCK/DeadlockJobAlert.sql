@@ -95,9 +95,7 @@ select @file = ''DeadlockReport_'' + @@servicename + ''.txt''
 
 EXEC msdb.dbo.sp_send_dbmail
       @profile_name = ''DBMailProfile'',
-       @recipients=''mprokunin@renins.com'',
---       @recipients=''SQLAdmin@aton.ru'',
---       @copy_recipients=''_finsupport@aton.ru'',
+       @recipients=''mprokunin@ABC.com'',
        @subject = @subject,
        @body = ''A deadlock occured. Further information can be found in the attached file.'',
        @query = ''select logDate, processInfo, errorText
@@ -143,4 +141,3 @@ EXEC msdb.dbo.sp_add_alert @name=N'ADM.DeadlockAlert',
 		@performance_condition=N'Locks|Number of Deadlocks/sec|_Total|>|0'
 --		, 		@job_id=N'bc0ed141-0efc-4c34-b715-06bd6c5f4fa6'
 GO
-
