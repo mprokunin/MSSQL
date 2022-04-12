@@ -8,19 +8,19 @@
 
 select @@SERVERNAME
 
-ALTER DATABASE [AtonBase] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
+ALTER DATABASE [ABCBase] SET SINGLE_USER WITH ROLLBACK IMMEDIATE
 GO
-ALTER DATABASE [AtonBase] MODIFY NAME = [AB] ;
+ALTER DATABASE [ABCBase] MODIFY NAME = [AB] ;
 GO  
 ALTER DATABASE [AB] SET MULTI_USER
 GO
 
 :Connect Publisher (AL-SQL05\BO)
 
-use [AtonBase]
+use [ABCBase]
 go
 update syssubscriptions 
-set dest_db = 'AB' where srvname='SQL206' and dest_db = 'AtonBase' 
+set dest_db = 'AB' where srvname='SQL206' and dest_db = 'ABCBase' 
 go
 
 /*
@@ -37,7 +37,7 @@ go
 use distribution
 go
 update MSsubscriptions
-set subscriber_db = 'AB' where subscriber_id = 7 and subscriber_db = 'AtonBase' -- subscriber_id = 7 -> SQL206 
+set subscriber_db = 'AB' where subscriber_id = 7 and subscriber_db = 'ABCBase' -- subscriber_id = 7 -> SQL206 
 go
 
 --select top 200 * from subscribers where subscriber_db = 'Test_1112'
@@ -47,10 +47,10 @@ use distribution
 go
 
 update MSdistribution_agents 
-set subscriber_db = 'AB' where subscriber_id = 7 and subscriber_db = 'AtonBase' 
+set subscriber_db = 'AB' where subscriber_id = 7 and subscriber_db = 'ABCBase' 
 go
 --select * from MSdistribution_agents 
 go
 --------------
 --Change  step 2 params on distribution agent
--Subscriber [SQL206] -SubscriberDB [AB] -Publisher [AL-SQL05\BO] -Distributor [REPHADR] -DistributorSecurityMode 1 -Publication [AtonBase_Pub] -PublisherDB [AtonBase]    -Continuous
+-Subscriber [SQL206] -SubscriberDB [AB] -Publisher [AL-SQL05\BO] -Distributor [REPHADR] -DistributorSecurityMode 1 -Publication [ABCBase_Pub] -PublisherDB [ABCBase]    -Continuous
