@@ -1,4 +1,4 @@
-USE [AtonBase]
+USE [ABCBase]
 GO
 
 /****** Object:  StoredProcedure [dbo].[ReindexOnline]    Script Date: 12.02.2019 16:43:14 ******/
@@ -82,5 +82,4 @@ AS
 	DEALLOCATE TestCursor
 
 GO
-
 
