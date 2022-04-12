@@ -1,4 +1,4 @@
-﻿USE distribution 
+USE distribution 
 GO 
 exec distribution..sp_replmonitorhelppublisher
 -- General Info, Latency
@@ -14,25 +14,25 @@ select top 100 * from distribution.dbo.msrepl_errors (nolock) order by time desc
 
 SELECT * FROM dbo.MSpublisher_databases
 --publisher_id	publisher_db	id	publisher_engine_edition
---1				AtonBase		1	30
+--1				ABCBase		1	30
 --4	`			mif				6	30
 
 
 SELECT * FROM dbo.MSpublications  --where publisher_db = 'Test_1112'
 --publisher_id	publisher_db	publication		publication_id	publication_type	thirdparty_flag	independent_agent	immediate_sync	allow_push	allow_pull	allow_anonymous	description	vendor_name	retention	sync_method	allow_subscription_copy	thirdparty_options	allow_queued_tran	options	retention_period_unit	allow_initialize_from_backup	min_autonosync_lsn
---1				AtonBase		AtonBase_Pub	1				0					0				1					0	1	1	0	Transactional publication of database 'AtonBase' from Publisher 'SQL105\AB'.	Microsoft SQL Server	0	3	0	NULL	0	0	0	1	0x003DADBB0023812B0024
---1				AtonBase		PSM_Pub			2				0					0				1					0	1	1	0	Transactional publication of  'AtonBase' for PSM from Publisher 'SQL105\AB'.	Microsoft SQL Server	0	3	0	NULL	0	0	0	1	0x003DACF5005E283C0002
+--1				ABCBase		ABCBase_Pub	1				0					0				1					0	1	1	0	Transactional publication of database 'ABCBase' from Publisher 'SQL105\AB'.	Microsoft SQL Server	0	3	0	NULL	0	0	0	1	0x003DADBB0023812B0024
+--1				ABCBase		PSM_Pub			2				0					0				1					0	1	1	0	Transactional publication of  'ABCBase' for PSM from Publisher 'SQL105\AB'.	Microsoft SQL Server	0	3	0	NULL	0	0	0	1	0x003DACF5005E283C0002
 --4				mif				mif_Pub			5				0					0				1					0	1	1	0	Transactional publication of database 'mif' from Publisher 'SQL205\MIF'.	Microsoft SQL Server	0	3	0	NULL	0	0	0	0	NULL
 
 SELECT top 100 * FROM dbo.MSlogreader_agents
 --id	name					publisher_id	publisher_db	publication	local_job	job_id								profile_id	publisher_security_mode	publisher_login	publisher_password	job_step_uid
---6		SQL105\AB-AtonBase-6	1				AtonBase		ALL			1			0xF5C27A9268229948B1E086255272E79E	17			1						
+--6		SQL105\AB-ABCBase-6	1				ABCBase		ALL			1			0xF5C27A9268229948B1E086255272E79E	17			1						
 --7		SQL205\MIF-mif-7		4				mif				ALL			1			0xF46EBF2E1DEB384597B8A569945737FE	2			1						
 
 
 SELECT top 100 * FROM distribution.dbo.MSlogreader_history order by start_time desc
 --publisher_id	publisher_db	id	publisher_engine_edition
---4				AtonBase		7	30
+--4				ABCBase		7	30
 --4				Test_1112		9	30
 
 --12			mif				11	30
@@ -42,16 +42,16 @@ SELECT * FROM dbo.MSsubscriptions
 select distinct publisher_database_id, publisher_id, publisher_db, publication_id, subscriber_id, subscriber_db FROM dbo.MSsubscriptions
 go
 --publisher_database_id	publisher_id	publisher_db	publication_id	subscriber_id	subscriber_db
---1						1				AtonBase		1				6				AB
---1						1				AtonBase		2				6				AB
---6						4				mif				5				5				AtonBase_copy
+--1						1				ABCBase		1				6				AB
+--1						1				ABCBase		2				6				AB
+--6						4				mif				5				5				ABCBase_copy
 --6						4				mif				5				6				AB
 --12					1				Test_1112		11				6				Test_10
 
 
 select top 100 * from MSrepl_backup_lsns
 -- Last Ternasaction LSN
-select top 2 *       from          MSrepl_transactions  where publisher_database_id = 12 order by xact_seqno desc  -- AtonBase
+select top 2 *       from          MSrepl_transactions  where publisher_database_id = 12 order by xact_seqno desc  -- ABCBase
 select top 2 *       from          MSrepl_transactions  where publisher_database_id = 13 order by xact_seqno desc  -- mif
 --
 
@@ -111,13 +111,13 @@ go
 EXEC Sp_browsereplcmds 
 @xact_seqno_start = '0x003DA4970039EDAA0025000000000000', 
 --@xact_seqno_end = '0x003D95210003342E0015',
-@publisher_database_id = 7 -- AtonBase
+@publisher_database_id = 7 -- ABCBase
 
 select top 100 * from distribution.dbo.MSdistribution_agents
 select top 100 * from distribution.dbo.MSlogreader_agents
 
 
-use AtonBase
+use ABCBase
 go
 -- Relication latecy report
 exec sp_replcounters 
@@ -209,11 +209,11 @@ select top 100 * from distribution.dbo.MSsubscriptions
 
 
 
-use AtonBase
+use ABCBase
 exec sp_helpsubscription_properties 
 	@publisher = 'SQL105\AB'
-	, @publisher_db = 'AtonBase'
-	, @publication = 'AtonBase_Pub'
+	, @publisher_db = 'ABCBase'
+	, @publication = 'ABCBase_Pub'
 	, @publication_type =  0
 
 SELECT name as tran_published_db FROM sys.databases WHERE is_published = 1;  
@@ -225,13 +225,13 @@ sp_helplogreader_agent
 
 use distribution
 sp_helpsubscriptionerrors @publisher = 'SQL105\AB'
-	, @publisher_db = 'AtonBase'
-	, @publication = 'AtonBase_Pub'
+	, @publisher_db = 'ABCBase'
+	, @publication = 'ABCBase_Pub'
 	, @subscriber = 'SQL206'
 	, @subscriber_db = 'AB'
 
 sp_helpsubscriptionerrors @publisher = 'SQL105\AB'
-	, @publisher_db = 'AtonBase'
+	, @publisher_db = 'ABCBase'
 	, @publication = 'PSM_Pub'
 	, @subscriber = 'SQL206'
 	, @subscriber_db = 'AB'
@@ -246,7 +246,7 @@ sp_helpsubscriptionerrors @publisher = 'SQL205\MIF'
 	, @publisher_db = 'mif'
 	, @publication = 'mif_Pub'
 	, @subscriber = 'BROWN'
-	, @subscriber_db = 'AtonBase_copy'
+	, @subscriber_db = 'ABCBase_copy'
 
 sp_helpsubscriptionerrors @publisher = 'SQL105\AB'
 	, @publisher_db = 'Test_1112'
@@ -255,10 +255,10 @@ sp_helpsubscriptionerrors @publisher = 'SQL105\AB'
 	, @subscriber_db = 'AB'
 
   
-USE AtonBase;  
+USE ABCBase;  
 go  
 -- View subscription details  
-sp_helpsubscription @publication = 'AtonBase_Pub'
+sp_helpsubscription @publication = 'ABCBase_Pub'
 	, @article = 'Asset'
 sp_helpdistributor
 
@@ -290,8 +290,8 @@ ORDER BY st.row_count DESC
 EXEC sp_helppublication;  
 --What are the articles in snapshot and transactional publications in this database?  
 --REMOVE COMMENTS FROM NEXT LINE AND REPLACE <PublicationName> with the name of a publication  
-EXEC sp_helparticle @publication='AtonBase_pub';  
-EXEC sp_helparticlecolumns @publication='AtonBase_pub', @article = 'TransType'
+EXEC sp_helparticle @publication='ABCBase_pub';  
+EXEC sp_helparticlecolumns @publication='ABCBase_pub', @article = 'TransType'
 EXEC sp_helparticlecolumns @publication='PSM_pub', @article = 'CpOnOperPlace'
 
 EXEC Test_1112..sp_helparticle @publication='Test_1112';  
@@ -301,7 +301,7 @@ EXEC sp_helpmergepublication;
 --What are the articles in merge publications in this database?  
 EXEC sp_helpmergearticle; -- to return information on articles for a single publication, specify @publication='<PublicationName>'  
 
-use AtonBase;
+use ABCBase;
 --Which objects in the database are published?  (Run at Publisher)
 SELECT name AS published_object, schema_id, is_published AS is_tran_published, is_merge_published, is_schema_published  
 FROM sys.tables WHERE is_published = 1 or is_merge_published = 1 or is_schema_published = 1  
@@ -313,7 +313,7 @@ SELECT name AS published_object, schema_id, 0, 0, is_schema_published
 FROM sys.views WHERE is_schema_published = 1;  
 
 
-USE AtonBase
+USE ABCBase
 go
 --Get detailed info for published articles (Run at Publisher)
 DECLARE @publication AS sysname;
@@ -336,7 +336,7 @@ FROM
     [distribution].[dbo].[MSarticles]  Art
     INNER JOIN [distribution].[dbo].[MSpublications] Pub
         ON Art.[publication_id] = Pub.[publication_id]
---where Pub.[publication] = 'AtonBase_Pub'
+--where Pub.[publication] = 'ABCBase_Pub'
 --where Pub.[publication] = 'mif_Pub'
 --where Pub.[publication] = 'PSM_Pub'
 where Pub.[publication] = 'RISK_Pub'
@@ -349,7 +349,7 @@ ORDER BY
 SELECT top 100 * FROM distribution.dbo.MSdistribution_status
 
 
-use AtonBase;
+use ABCBase;
 
 --Which columns in the database are published?  (Run at Publisher) -- for Confluence
 SELECT schema_name(tab.schema_id) as 'Schema', tab.name AS PublishedObject, col.name as 'ColName', type_name(col.user_type_id) as 'ColType', col.is_replicated as 'IsReplicated'
@@ -382,18 +382,18 @@ SELECT object_name(object_id) AS tran_published_table, name AS published_column 
 SELECT object_name(object_id) AS merge_published_table, name AS published_column FROM sys.columns WHERE is_merge_published = 1;  
 
 -- Get datails for an article in Publisher
-USE AtonBase
+USE ABCBase
 go
 DECLARE @publication AS sysname;
-SET @publication = N'AtonBase_Pub';
+SET @publication = N'ABCBase_Pub';
 
 EXEC sp_helparticle
   @publication = @publication;
 GO
 
-USE AtonBase
+USE ABCBase
 GO
-sp_helparticlecolumns  @publication = N'AtonBase_Pub' ,  @article =  '$Operation'
+sp_helparticlecolumns  @publication = N'ABCBase_Pub' ,  @article =  '$Operation'
 
 select top 100 * from [distribution].[dbo].[MSsubscriber_info]
 SELECT TOP (1000) [publisher_id], [publisher_db], [id], [publisher_engine_edition]  FROM [distribution].[dbo].[MSpublisher_databases]
@@ -418,10 +418,10 @@ exec sp_browsereplcmds;
 -- Get number of pending commands for a subscription to a transactional publication
 use distribution;
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-exec sp_replmonitorsubscriptionpendingcmds @publisher=N'SQL105\AB',@publisher_db='AtonBase', @publication='AtonBase_Pub', @subscriber = 'SQL206', 
+exec sp_replmonitorsubscriptionpendingcmds @publisher=N'SQL105\AB',@publisher_db='ABCBase', @publication='ABCBase_Pub', @subscriber = 'SQL206', 
 	@subscriber_db='AB', @subscription_type=1 -- 0 = Push subscription, 1 -Pull
 
-exec sp_replmonitorsubscriptionpendingcmds @publisher=N'SQL105\AB',@publisher_db='AtonBase', @publication='PSM_Pub', @subscriber = 'SQL206', 
+exec sp_replmonitorsubscriptionpendingcmds @publisher=N'SQL105\AB',@publisher_db='ABCBase', @publication='PSM_Pub', @subscriber = 'SQL206', 
 	@subscriber_db='AB', @subscription_type=1 -- 0 = Push subscription, 1 -Pull
 
 exec sp_replmonitorsubscriptionpendingcmds @publisher = 'SQL205\MIF', @publisher_db='mif', @publication='mif_Pub', @subscriber = 'SQL206', 
@@ -435,13 +435,13 @@ exec AB..sp_helpsubscription_properties
 
 --sp_help sp_replmonitorsubscriptionpendingcmds
 ---
-use AtonBase
+use ABCBase
 go
 exec sp_showpendingchanges
 exec sp_replcmds;
 exec sp_replshowcmds;
-sp_changePublication 'AtonBase_Pub',status,active
-exec AtonBase..sp_showpendingchanges  --merge replication
+sp_changePublication 'ABCBase_Pub',status,active
+exec ABCBase..sp_showpendingchanges  --merge replication
 
 
 
@@ -479,28 +479,28 @@ exec Distribution.dbo.sp_MSremove_published_jobs @server = 'SQL105\AB', @databas
 go
 
 
-USE AtonBase
+USE ABCBase
 
 
 
 
 -- Steps to Add article without snapshot
 EXEC sp_changepublication
-@publication = 'AtonBase_Pub',
+@publication = 'ABCBase_Pub',
 @property = N'allow_anonymous',
 @value = 'False'
 GO
 
 EXEC sp_changepublication
-@publication = 'AtonBase_Pub',
+@publication = 'ABCBase_Pub',
 @property = N'immediate_sync',
 @value = 'False'
 GO
 
 
 --Insert new token on Primary Replica in the Published database
-use AtonBase
-EXEC sys.sp_posttracertoken @publication ='AtonBase_Pub'
+use ABCBase
+EXEC sys.sp_posttracertoken @publication ='ABCBase_Pub'
 Go
 
 use distribution
@@ -580,7 +580,7 @@ exec distribution..sp_get_redirected_publisher @original_publisher = 'SQL205\MIF
 	@bypass_publisher_validation = 1;
 
 exec distribution..sp_get_redirected_publisher @original_publisher = 'SQL105\AB',  
-    @publisher_db = 'AtonBase',  
+    @publisher_db = 'ABCBase',  
 	@bypass_publisher_validation = 0;
 
 use distribution
