@@ -44,7 +44,7 @@ use [master]
 
 GO
 
-GRANT CONNECT ON ENDPOINT::[Hadr_endpoint] TO [ICATON\SQLUSER]
+GRANT CONNECT ON ENDPOINT::[Hadr_endpoint] TO [IC\SQLUSER]
 
 GO
 
@@ -67,13 +67,13 @@ USE [master]
 
 GO
 
-CREATE AVAILABILITY GROUP [testhadr.aton.global]
+CREATE AVAILABILITY GROUP [testhadr.corp.global]
 WITH (AUTOMATED_BACKUP_PREFERENCE = NONE,
 DB_FAILOVER = ON,
 DTC_SUPPORT = PER_DB)
 FOR DATABASE [ReportServer$SQL2008], [ReportServer$SQL2008TempDB], [TDB]
-REPLICA ON N'TSQL03\SQL2008' WITH (ENDPOINT_URL = N'TCP://tsql03.aton.global:5022', FAILOVER_MODE = MANUAL, AVAILABILITY_MODE = ASYNCHRONOUS_COMMIT, BACKUP_PRIORITY = 50, SEEDING_MODE = MANUAL, PRIMARY_ROLE(READ_ONLY_ROUTING_LIST = (N'TSQL05\SQL2008')), SECONDARY_ROLE(READ_ONLY_ROUTING_URL = N'TSQL05:1433', ALLOW_CONNECTIONS = ALL)),
-	N'TSQL05\SQL2008' WITH (ENDPOINT_URL = N'TCP://tsql05.aton.global:5022', FAILOVER_MODE = MANUAL, AVAILABILITY_MODE = ASYNCHRONOUS_COMMIT, BACKUP_PRIORITY = 50, SEEDING_MODE = MANUAL, PRIMARY_ROLE(READ_ONLY_ROUTING_LIST = (N'TSQL03\SQL2008')), SECONDARY_ROLE(READ_ONLY_ROUTING_URL = N'TSQL05:1433', ALLOW_CONNECTIONS = ALL));
+REPLICA ON N'TSQL03\SQL2008' WITH (ENDPOINT_URL = N'TCP://tsql03.corp.global:5022', FAILOVER_MODE = MANUAL, AVAILABILITY_MODE = ASYNCHRONOUS_COMMIT, BACKUP_PRIORITY = 50, SEEDING_MODE = MANUAL, PRIMARY_ROLE(READ_ONLY_ROUTING_LIST = (N'TSQL05\SQL2008')), SECONDARY_ROLE(READ_ONLY_ROUTING_URL = N'TSQL05:1433', ALLOW_CONNECTIONS = ALL)),
+	N'TSQL05\SQL2008' WITH (ENDPOINT_URL = N'TCP://tsql05.corp.global:5022', FAILOVER_MODE = MANUAL, AVAILABILITY_MODE = ASYNCHRONOUS_COMMIT, BACKUP_PRIORITY = 50, SEEDING_MODE = MANUAL, PRIMARY_ROLE(READ_ONLY_ROUTING_LIST = (N'TSQL03\SQL2008')), SECONDARY_ROLE(READ_ONLY_ROUTING_URL = N'TSQL05:1433', ALLOW_CONNECTIONS = ALL));
 
 GO
 
@@ -83,7 +83,7 @@ USE [master]
 
 GO
 
-ALTER AVAILABILITY GROUP [testhadr.aton.global]
+ALTER AVAILABILITY GROUP [testhadr.corp.global]
 ADD LISTENER N'testhadr' (
 WITH IP
 ((N'172.17.6.74', N'255.255.255.0'),
@@ -95,7 +95,7 @@ GO
 
 :Connect TSQL05
 
-ALTER AVAILABILITY GROUP [testhadr.aton.global] JOIN;
+ALTER AVAILABILITY GROUP [testhadr.corp.global] JOIN;
 
 GO
 
@@ -115,7 +115,7 @@ if (serverproperty('IsHadrEnabled') = 1)
 	and (isnull((select member_state from master.sys.dm_hadr_cluster_members where upper(member_name COLLATE Latin1_General_CI_AS) = upper(cast(serverproperty('ComputerNamePhysicalNetBIOS') as nvarchar(256)) COLLATE Latin1_General_CI_AS)), 0) <> 0)
 	and (isnull((select state from master.sys.database_mirroring_endpoints), 1) = 0)
 begin
-    select @group_id = ags.group_id from master.sys.availability_groups as ags where name = N'testhadr.aton.global'
+    select @group_id = ags.group_id from master.sys.availability_groups as ags where name = N'testhadr.corp.global'
 	select @replica_id = replicas.replica_id from master.sys.availability_replicas as replicas where upper(replicas.replica_server_name COLLATE Latin1_General_CI_AS) = upper(@@SERVERNAME COLLATE Latin1_General_CI_AS) and group_id = @group_id
 	while @conn <> 1 and @count > 0
 	begin
