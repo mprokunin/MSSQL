@@ -1,5 +1,5 @@
-sp_helpdb [AtonBase171202]
-USE [AtonBase171202]
+sp_helpdb [ABCBase171202]
+USE [ABCBase171202]
 GO
 sp_help Operation
 select min(OperID) from Operation with (index (XPKOperation)) -- -4039
@@ -1043,216 +1043,215 @@ GO
 ALTER TABLE [dbo].[Operation] CHECK CONSTRAINT [MoreThen20081999]
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Уникальный идентификатор операции' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OperID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OperID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Признак объединения операций в группу' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'LinkOperID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'LinkOperID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор шаблона операции' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OperTemplID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OperTemplID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата совершения операции (без времени)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OperDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OperDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Время совершения операции' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OperTime'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OperTime'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Внутренний номер операции в системе' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'IntOperNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'IntOperNum'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Внешний номер операции в системе' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ExtOperNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ExtOperNum'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор заявки' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OrderID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'OrderID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор Площадки - получателя' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvOperPlaceID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvOperPlaceID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор счета владения - получателя' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор бумажного счета получателя' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvVaultID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvVaultID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор денежного счета получателя' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvBankID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvBankID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор счета владения отправителя' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор Площадки отправителя' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndOperPlaceID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndOperPlaceID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор бумажного счета отправителя' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndVaultID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndVaultID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор денежного счета отправителя' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndBankID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndBankID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор актива' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'AssetID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'AssetID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Количество Актива' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Quantity'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Quantity'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Цена единицы актива' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Price'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Price'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Валюта цены' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'PriceCurr'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'PriceCurr'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Сумма к оплате' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TotalPayment'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TotalPayment'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Оплачено' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TotalPayed'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TotalPayed'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Валюта платежа' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'PaymentCurr'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'PaymentCurr'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата поставки актива' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SettlementDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SettlementDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата оплаты актива или поставки денег' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'PaymentDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'PaymentDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Это поле ничего не говорит о том, закрыта ли сделка по поставке и оплате. Имеет значение только для OTC-сделок. Проставленная ClosedDate блокирует дальнейшие изменения в сделках' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ClosedDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ OTC-пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ ClosedDate пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ClosedDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Пользователь, утвердивший сделку (бумаги)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'StockUser'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'StockUser'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата утверждения сделки (бумаги)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'StockDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'StockDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Пользователь, утвердивший сделку (деньги)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'MoneyUser'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'MoneyUser'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата утверждения сделки (деньги)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'MoneyDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅпїЅпїЅпїЅпїЅ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'MoneyDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Номер депозитарного поручения' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvDepoInstr'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvDepoInstr'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата депозитарного поручения' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvDepoInstrDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RcvDepoInstrDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Номер депозитарного поручения' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndDepoInstr'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndDepoInstr'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата депозитарного поручения' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndDepoInstrDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SndDepoInstrDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Коментарий к операции' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Comment'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Comment'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Пользователь, который создал запись' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Creator'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Creator'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата создания записи' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'CreateDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'CreateDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Пользователь изменивший запись' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Corrector'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'Corrector'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата последнего изменения' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'CorrectDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'CorrectDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Тип сделки' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TypeCode'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TypeCode'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Служебное поле:
-   погашение купона-COUP=[ID Купона]' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ServiceInf'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ:
+   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ-COUP=[ID пїЅпїЅпїЅпїЅпїЅпїЅ]' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ServiceInf'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Внешний идентификатор заявки,
-   приходящий с биржи' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ExtOrderID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ,
+   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ExtOrderID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Имя пользователя/группы' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'AssignGroup'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'AssignGroup'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Имя пользователя/группы' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'AssignUser'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ/пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'AssignUser'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор типа курса' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RateTypeID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RateTypeID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Курс-числитель (в случае фиксированного курса)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RateNum'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RateNum'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Курс-числитель (в случае фиксированного курса)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RateDenom'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RateDenom'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата на которую фиксируется курс (в случае фиксированного курса на дату)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RateDate'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ (пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RateDate'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Количество актива не облагаемого налогом' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TaxFreeQtty'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TaxFreeQtty'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Используется при формировании биржевой сделки.
-   Вохможные значения:
-   T0 - обыкновенная сделка, которая закрывается в тотже день
-   B## - левая сделка. Проводки закрываются на дату OperDate+## по хитрому алгоритму (см. процеду' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SettleCode'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.
+   пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ:
+   T0 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ
+   B## - пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ OperDate+## пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ (пїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SettleCode'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Разнос баз. Идентификатор соответствующей операции в базе AtonBase_Front. Заполняется только для пришедших из соски сделок.' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'FrontOperID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅ ABCBase_Front. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ.' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'FrontOperID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор счета владения' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ContragentID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ContragentID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Поле используется при переносе операций из AtonBase_Main в AtonBase_front. Кроме того 
-   для переноса необходимо, чтобы FrontOperID был NULL' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'rev_ins'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ ABCBase_Main пїЅ ABCBase_front. пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ 
+   пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ FrontOperID пїЅпїЅпїЅ NULL' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'rev_ins'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор спец схемы' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SchemeID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'SchemeID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Версия записи Фокуса' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'FStamp'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'FStamp'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор билета' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TicketID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'TicketID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Комментарий к операции, английский' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'CommentEng'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'CommentEng'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор Актива привязанного к данной операции' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'LinkAssetID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'LinkAssetID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Признак того, что данная операция не учитывается в расчете налога' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'IsNotInTax'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'IsNotInTax'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Идентификатор поручения' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'InstructionID'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'InstructionID'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Дата закрытия последней денежной проводки на банк Clients(BLOCKED)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'PaymentDateBlocked'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅ Clients(BLOCKED)' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'PaymentDateBlocked'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Не отображать в клиентском отчете' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'IsNotForClientReport'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'IsNotForClientReport'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Количество дней, через которое будет заключена вторая часть сделки РЕПО' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RepoTerm'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RepoTerm'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Тип экспирации, используется для обозначения экспирации опционов,
-   1 -  экспирация
-   2 - истечение
-   NULL - обычная операция' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ExpirationType'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ,
+   1 -  пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+   2 - пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ
+   NULL - пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ExpirationType'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Цена второй репо-сделки. Прописываем в первой, т.к. из сервисинфа долго доставать' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RepoPrice2'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅ-пїЅпїЅпїЅпїЅпїЅпїЅ. пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅ, пїЅ.пїЅ. пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'RepoPrice2'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Цена второй стороны клиентской сделки' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ContragentPrice'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'ContragentPrice'
 GO
 
-EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'Галка, отвечающая за то, чтобы данная операция не попала в депозитарный отчет.' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'IsNotForDepoReport'
+EXEC sys.sp_addextendedproperty @name=N'MS_Description', @value=N'пїЅпїЅпїЅпїЅпїЅ, пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅ, пїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅ пїЅпїЅпїЅпїЅпїЅпїЅ пїЅ пїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅпїЅ пїЅпїЅпїЅпїЅпїЅ.' , @level0type=N'SCHEMA',@level0name=N'dbo', @level1type=N'TABLE',@level1name=N'Operation', @level2type=N'COLUMN',@level2name=N'IsNotForDepoReport'
 GO
-
 
 
 
