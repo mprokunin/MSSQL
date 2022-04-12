@@ -57,7 +57,7 @@ EXEC sp_helpsubscriberinfo;
   
 --********** Execute at the Publisher in the publication database **********--  
   
-USE AtonBase;  
+USE ABCBase;  
 go  
   
 --What are the snapshot and transactional publications in this database?   
