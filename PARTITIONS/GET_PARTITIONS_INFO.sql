@@ -1,4 +1,4 @@
-use AtonBase
+use ABCBase
 go
 sp_helpdb Cuts
 exec [dbo].[sp_partitioninfo]
@@ -127,5 +127,4 @@ where OBJECT_SCHEMA_NAME(pstats.object_id) like coalesce (@SchemaName, '%') and 
 ORDER BY SchemaName, TableName, PartitionNumber;
 end
 Go
-
 
