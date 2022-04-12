@@ -7,13 +7,13 @@ exec distribution..sp_replshowcmds
 EXECUTE mif..sp_repltrans 
 EXECUTE mif..sp_replflush; -- Always run it to free cache
 
-exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL105\AB', @publisher_db = 'AtonBase', @publication = 'AtonBase_Pub', @subscriber = 'BROWN', @subscriber_db = 'AtonBase_copy'
-exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL105\AB', @publisher_db = 'AtonBase', @publication = 'PSM_Pub', @subscriber = 'BROWN', @subscriber_db = 'AtonBase_copy'
-exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL205\MIF', @publisher_db = 'mif', @publication = 'mif_Pub', @subscriber = 'BROWN', @subscriber_db = 'AtonBase_copy'
+exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL105\AB', @publisher_db = 'ABCBase', @publication = 'ABCBase_Pub', @subscriber = 'BROWN', @subscriber_db = 'ABCBase_copy'
+exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL105\AB', @publisher_db = 'ABCBase', @publication = 'PSM_Pub', @subscriber = 'BROWN', @subscriber_db = 'ABCBase_copy'
+exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL205\MIF', @publisher_db = 'mif', @publication = 'mif_Pub', @subscriber = 'BROWN', @subscriber_db = 'ABCBase_copy'
 
-exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL105\AB', @publisher_db = 'AtonBase', @publication = 'AtonBase_Pub', @subscriber = 'SQL206', @subscriber_db = 'AtonBase_copy'
-exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL105\AB', @publisher_db = 'AtonBase', @publication = 'PSM_Pub', @subscriber = 'SQL206', @subscriber_db = 'AtonBase_copy'
-exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL205\MIF', @publisher_db = 'mif', @publication = 'mif_Pub', @subscriber = 'SQL206', @subscriber_db = 'AtonBase_copy'
+exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL105\AB', @publisher_db = 'ABCBase', @publication = 'ABCBase_Pub', @subscriber = 'SQL206', @subscriber_db = 'ABCBase_copy'
+exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL105\AB', @publisher_db = 'ABCBase', @publication = 'PSM_Pub', @subscriber = 'SQL206', @subscriber_db = 'ABCBase_copy'
+exec distribution.dbo.sp_helpsubscriptionerrors @publisher = 'SQL205\MIF', @publisher_db = 'mif', @publication = 'mif_Pub', @subscriber = 'SQL206', @subscriber_db = 'ABCBase_copy'
 go
 select top 10 * from distribution.dbo.msrepl_errors (nolock) order by time desc
 --Violation of PRIMARY KEY constraint 'PK_tblOperationSign'. Cannot insert duplicate key in object 'dbo.tblOperationSign'. The duplicate key value is (232781519, 13).
@@ -56,14 +56,14 @@ SELECT
     GROUP BY publication
 
 --publication	LastPubLSN
---AtonBase_Pub	0x003DABFB00884E780002000000000000
+--ABCBase_Pub	0x003DABFB00884E780002000000000000
 --mif_Pub		0x00ADE3CC000014E40001000000000000
 
 -- Run at Distributor
 --Find a valid LSN to start from:
 DECLARE @Publisher sysname = N'SQL105\AB',
-            @PubDB sysname = N'AtonBase',
-            @Publication sysname = N'AtonBase_Pub';
+            @PubDB sysname = N'ABCBase',
+            @Publication sysname = N'ABCBase_Pub';
     SELECT TOP 1000 trans.entry_time, trans.publisher_database_id, trans.xact_seqno, p.publisher_db, srv.srvname
         FROM dbo.MSpublications AS p
             JOIN master..sysservers AS srv
@@ -81,14 +81,14 @@ DECLARE @Publisher sysname = N'SQL105\AB',
 
 
 
-exec AtonBase..sp_helpsubscription 
+exec ABCBase..sp_helpsubscription 
 
 
 
 use distribution
 EXEC sp_helpsubscriptionerrors
-    @publisher='AL-SQL05\BO',@publisher_db='AtonBase',@publication='AtonBase_Pub',
-    @subscriber='BROWN',@subscriber_db='AtonBase_Copy'
+    @publisher='AL-SQL05\BO',@publisher_db='ABCBase',@publication='ABCBase_Pub',
+    @subscriber='BROWN',@subscriber_db='ABCBase_Copy'
 
 -- Get Errors
 SELECT msre.*   
@@ -130,16 +130,16 @@ select *  FROM MSdistribution_agents
 
 
 sp_helpsubscriptionerrors @publisher = 'AL-SQL05\BO'
-	, @publisher_db = 'AtonBase'
+	, @publisher_db = 'ABCBase'
 	, @publication = 'PSM_Pub'
 	, @subscriber = 'BROWN'
-	, @subscriber_db = 'AtonBase_copy'
+	, @subscriber_db = 'ABCBase_copy'
 
 sp_helpsubscriptionerrors @publisher = 'AL-SQL03\AOLFRONT'
 	, @publisher_db = 'mif'
 	, @publication = 'mif_Pub'
 	, @subscriber = 'BROWN'
-	, @subscriber_db = 'AtonBase_copy'
+	, @subscriber_db = 'ABCBase_copy'
 
 
 -- Âûïîëíÿòü íà publisher
@@ -154,7 +154,7 @@ EXECUTE mif..sp_replflush; -- Always run it to free cache
 execute mif..sp_replrestart
 
 SELECT name, log_reuse_wait, log_reuse_wait_desc, is_cdc_enabled FROM sys.databases 
---WHERE name = 'AtonBAse'
+--WHERE name = 'ABCBAse'
 order by name
 exec msdb..sp__dbinfo 1
 use mif
@@ -196,5 +196,5 @@ exec distribution..sp_get_redirected_publisher @original_publisher = 'SQL205\MIF
 	@bypass_publisher_validation = 1;
 
 exec distribution..exec sp_get_redirected_publisher @original_publisher = 'SQL105\AB',  
-    @publisher_db = 'AtonBase',  
+    @publisher_db = 'ABCBase',  
 	@bypass_publisher_validation = 0;
