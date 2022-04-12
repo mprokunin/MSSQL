@@ -1,3 +1,32 @@
+Skip to content
+Search or jump toâ€¦
+Pull requests
+Issues
+Marketplace
+Explore
+ 
+@mprokunin 
+mprokunin
+/
+MSSQL
+Public
+Code
+Issues
+Pull requests
+Actions
+Projects
+Wiki
+Security
+Insights
+Settings
+MSSQL/BACKUP_RESTORE/BACKUP_RESTORE_History.sql
+@mprokunin
+mprokunin Add files via upload
+Latest commit 0d04b4c on 6 May 2020
+ History
+ 1 contributor
+319 lines (272 sloc)  15.7 KB
+   
 --------------------------------------------------------------------------------- 
 ---------- Backup History
 SELECT top 1000
@@ -158,7 +187,7 @@ select datediff(dd, max(msdb.dbo.backupset.backup_finish_date), getdate())
 
 -- Who keep the log from truncation
 select name, log_reuse_wait, log_reuse_wait_desc, is_cdc_enabled from sys.databases order by 1
-SELECT name, log_reuse_wait, log_reuse_wait_desc, is_cdc_enabled FROM sys.databases WHERE name = 'AtonBase';
+SELECT name, log_reuse_wait, log_reuse_wait_desc, is_cdc_enabled FROM sys.databases WHERE name = 'ABCBase';
 
 exec msdb..sp__dbinfo 1
 
@@ -166,15 +195,15 @@ RESTORE LOG AdventureWorks FROM DISK = 'c:\adventureworks_log.bak'
 WITH STOPATMARK = 'lsn:15000000040000037'  
 GO  
 
-SELECT DATABASEPROPERTYEX('AtonBase', 'IsPublished');
+SELECT DATABASEPROPERTYEX('ABCBase', 'IsPublished');
 SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED
-exec AtonBase..sp_repltrans 
-exec AtonBase..sp_replcmds @maxtrans = 10
+exec ABCBase..sp_repltrans 
+exec ABCBase..sp_replcmds @maxtrans = 10
 
 
 select @@SERVERNAME
 
-sp__helplogins [icaton\crsservice]
+sp__helplogins [icABC\crsservice]
 sp_who [rimos_nt_01\backoper]
 --kill 612
 sp_who 462
@@ -187,7 +216,7 @@ SELECT session_id as SPID, command, a.text AS Query, start_time, percent_complet
 	FROM sys.dm_exec_requests r CROSS APPLY sys.dm_exec_sql_text(r.sql_handle) a WHERE r.command in ('BACKUP DATABASE','RESTORE DATABASE')
 ------------- 
 
-dbcc inputbuffer(612) -- BACKUP DATABASE [AtonBase] TO virtual_device = 'AtonBase_00__6df75fe7_f275_419c_915b_72a4a737b8a2_' WITH name = 'Backup Exec SQL Server Agent', description = 'Streaming Full', CHECKSUM, COMPRESSION
+dbcc inputbuffer(612) -- BACKUP DATABASE [ABCBase] TO virtual_device = 'ABCBase_00__6df75fe7_f275_419c_915b_72a4a737b8a2_' WITH name = 'Backup Exec SQL Server Agent', description = 'Streaming Full', CHECKSUM, COMPRESSION
 dbcc inputbuffer(189) -- BACKUP DATABASE [Cuts] TO virtual_device = 'Cuts_00__7c55e1ff_800f_4777_bfff_431dd9e00111_' WITH name = 'Backup Exec SQL Server Agent', description = 'Streaming Full', CHECKSUM, COMPRESSION
 dbcc inputbuffer(211) -- (@_msparam_0 nvarchar(4000))        select * into #tmpag_availability_groups from master.sys.availability_groups                   select group_id, replica_id, replica_server_name,create_date, modify_date, endpoint_url, read_only_routing_url, primary_role_allow_connections, secondary_role_allow_connections, availability_mode,failover_mode, session_timeout, backup_priority, owner_sid, seeding_mode into #tmpar_availability_replicas from master.sys.availability_replicas                  select group_id, replica_id, role,operational_state,recovery_health,synchronization_health,connected_state, last_connect_error_number,last_connect_error_description, last_connect_error_timestamp into #tmpar_availability_replica_states from master.sys.dm_hadr_availability_replica_states                select * into #tmpar_ags from master.sys.dm_hadr_availability_group_states        select ar.group_id, ar.replica_id, ar.replica_server_name, ar.availability_mode, (case when UPPER(ags.primary_replica) = UPPER(ar.replica_server_name) then 1 else 0 end) as role, ars.synchronization_health into #tmpar_availabilty_mode from #tmpar_availability_replicas as ar        left join #tmpar_ags as ags on ags.group_id = ar.group_id        left join #tmpar_availability_replica_states as ars on ar.group_id = ars.group_id and ar.replica_id = ars.replica_id        select am1.replica_id, am1.role, (case when (am1.synchronization_health is null) then 3 else am1.synchronization_health end) as sync_state, (case when (am1.availability_mode is NULL) or (am3.availability_mode is NULL) then null when (am1.role = 1) then 1 when (am1.availability_mode = 0 or am3.availability_mode = 0) then 0 else 1 end) as effective_availability_mode        into #tmpar_replica_rollupstate from #tmpar_availabilty_mode as am1 left join (select group_id, role, availability_mode from #tmpar_availabilty_mode as am2 where am2.role = 1) as am3 on am1.group_id = am3.group_id        drop table #tmpar_availabilty_mode        drop table #tmpar_ags                select replica_id,join_state into #tmpar_availability_replica_cluster_states from master.sys.dm_hadr_availability_replica_cluster_states         SELECT AR.replica_server_name AS [Name], 'Server[@Name=' + quotename(CAST(          serverproperty(N'Servername')         AS sysname),'''') + ']' + '/AvailabilityGroup[@Name=' + quotename(AG.name,'''') + ']' + '/AvailabilityReplica[@Name=' + quotename(AR.replica_server_name,'''') + ']' AS [Urn], ISNULL(arstates.role, 3) AS [Role], ISNULL(AR.primary_role_allow_connections, 4) AS [ConnectionModeInPrimaryRole], ISNULL(AR.secondary_role_allow_connections, 3) AS [ConnectionModeInSecondaryRole], ISNULL(arstates.connected_state, 2) AS [ConnectionState], (case when arrollupstates.sync_state = 3 then 3 when (arrollupstates.effective_availability_mode = 1 or arrollupstates.role = 1) then arrollupstates.sync_state when arrollupstates.sync_state = 2 then 1 else 0 end) AS [RollupSynchronizationState], ISNULL(arcs.join_state, 99) AS [JoinState] FROM #tmpag_availability_groups AS AG INNER JOIN #tmpar_availability_replicas AS AR ON (AR.replica_server_name IS NOT NULL) AND (AR.group_id=AG.group_id) LEFT OUTER JOIN #tmpar_availability_replica_states AS arstates ON AR.replica_id = arstates.replica_id LEFT OUTER JOIN #tmpar_replica_rollupstate AS arrollupstates ON AR.replica_id = arrollupstates.replica_id LEFT OUTER JOIN #tmpar_availability_replica_cluster_states AS arcs ON AR.replica_id = arcs.replica_id WHERE (AG.name=@_msparam_0) ORDER BY [Name] ASC         DROP TABLE #tmpar_availability_replicas                DROP TABLE #tmpar_availability_replica_states                DROP TABLE #tmpar_replica_rollupstate                DROP TABLE #tmpar_availability_replica_cluster_states                drop table #tmpag_availability_groups        
 
@@ -195,7 +224,7 @@ select @@SERVERNAME
 sp_helpdb d_ner
 exec xp_fixeddrives
 exec msdb..sp__dbinfo 1
-dbcc opentran(AtonBase)
+dbcc opentran(ABCBase)
 exec msdb..sp__dbinfo
 
 
@@ -211,22 +240,22 @@ MOVE N'IrisFilesDB_log' TO N'F:IrisFilesDB-performance_log.ldf',
 MOVE N'FileStreamData' TO N'E:IrisFilesDB-performance',  NOUNLOAD,  STATS = 5, REPLACE
 GO
 
-USE [AtonBase]
+USE [ABCBase]
 GO
-DBCC SHRINKFILE (N'AtonBase_Log' , 0, TRUNCATEONLY)
+DBCC SHRINKFILE (N'ABCBase_Log' , 0, TRUNCATEONLY)
 GO
 
 -- Get VLF Counts for all databases on the instance (Query 34) (VLF Counts)
-SELECT [name] AS [Database Name], [VLF Count] 
-FROM sys.databases AS db WITH (NOLOCK)
-CROSS APPLY (SELECT file_id, COUNT(*) AS [VLF Count] 
+SELECT [name] AS [Database Name], [VLF Count] 
+FROM sys.databases AS db WITH (NOLOCK)
+CROSS APPLY (SELECT file_id, COUNT(*) AS [VLF Count] 
 			 FROM sys.dm_db_log_info(db.database_id) 
-             GROUP BY file_id) AS li
+             GROUP BY file_id) AS li
 ORDER BY [VLF Count] DESC  OPTION (RECOMPILE);
 ------
 
 exec msdb..sp__dbinfo 3
-dbcc opentran(AtonBase)
+dbcc opentran(ABCBase)
 
 ------------ Restore history
 DECLARE @dbname sysname, @days int
@@ -282,10 +311,10 @@ select name, recovery_model_desc, is_cdc_enabled, log_reuse_wait_desc,source_dat
 restore database [IrisFilesDB-performance]
 
 
-use AtonBAse 
+use ABCBAse 
 checkpoint
 
-use AtonBase_copy
+use ABCBase_copy
 SELECT publisher,publisher_db,publication,time, distribution_agent,transaction_timestamp 
 FROM dbo.MSreplication_subscriptions
 
@@ -317,3 +346,16 @@ select log_reuse_wait_desc, * from master.sys.databases order by name
 --restore headeronly from disk='C:\BACKUP\CasePro_sys.bak'
 
 restore database [IrisFilesDB-performance]
+Â© 2022 GitHub, Inc.
+Terms
+Privacy
+Security
+Status
+Docs
+Contact GitHub
+Pricing
+API
+Training
+Blog
+About
+Loading complete
