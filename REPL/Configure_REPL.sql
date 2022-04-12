@@ -291,7 +291,7 @@ USE distribution;
 GO  
 EXEC sys.sp_redirect_publisher   
 @original_publisher = 'AL-SQL05\BO',  
-    @publisher_db = 'AtonBase',  
+    @publisher_db = 'ABCBase',  
     @redirected_publisher = 'ABHADR';  
 go
 
@@ -317,7 +317,7 @@ Select * From MSRedirected_Publishers;
  -- Run locally at Dsitributor
 use distribution;
 exec sp_get_redirected_publisher @original_publisher = 'AL-SQL05\BO',  
-    @publisher_db = 'AtonBase',  
+    @publisher_db = 'ABCBase',  
 	@bypass_publisher_validation = 0;
 
 --redirected_publisher	error_number	error_severity	error_message
@@ -335,7 +335,7 @@ use distribution;
 DECLARE @redirected_publisher sysname;  
 EXEC sys.sp_validate_redirected_publisher   
     @original_publisher = 'AL-SQL05\BO',  
-    @publisher_db = 'AtonBase',  
+    @publisher_db = 'ABCBase',  
     @redirected_publisher = @redirected_publisher output;
 select @redirected_publisher;
 --abhadr
@@ -354,4 +354,3 @@ select @redirected_publisher;
 
 
 EXEC sp_helpdistributiondb;  
-
