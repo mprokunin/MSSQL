@@ -1,0 +1,140 @@
+--sp_helpdb
+------------------- Largest tables
+use DAB1
+go
+SELECT 
+	SCHEMA_NAME(t.schema_id) as 'Schema', 
+    t.NAME AS TableName,
+    i.name as indexName,
+    case 
+      when i.index_id = 0 then 'Heap'
+      when i.index_id = 1 then 'Clustered Index/b-tree'
+      when i.index_id > 1 then 'Non-clustered Index/b-tree'
+    end as 'Type',
+
+    sum(p.rows) as RowCounts,
+    sum(a.total_pages) as TotalPages, 
+    sum(a.used_pages) as UsedPages, 
+    sum(a.data_pages) as DataPages,
+    (sum(a.total_pages) * 8) / 1024 as TotalSpaceMB, 
+    (sum(a.used_pages) * 8) / 1024 as UsedSpaceMB, 
+    (sum(a.data_pages) * 8) / 1024 as DataSpaceMB
+FROM 
+    sys.tables t with (nolock)
+INNER JOIN      
+    sys.indexes i with (nolock) ON t.OBJECT_ID = i.object_id
+INNER JOIN 
+    sys.partitions p with (nolock) ON i.object_id = p.OBJECT_ID AND i.index_id = p.index_id
+INNER JOIN 
+    sys.allocation_units a with (nolock) ON p.partition_id = a.container_id
+WHERE 
+    i.OBJECT_ID > 255
+    AND i.index_id <= 1
+--	t.NAME NOT LIKE 'dt%'
+--	AND SCHEMA_NAME(t.schema_id) <> 'core'
+
+--and (t.NAME like 'FCT%' or t.NAME like 'FHT%' or t.NAME like 'DCT%' or t.NAME like 'DHT%')
+
+GROUP BY 
+    t.schema_id, t.NAME, i.object_id, i.index_id, i.name 
+ORDER BY 
+--    object_name(i.object_id) 
+--t.name
+TotalPages desc
+--sum(p.rows) desc
+
+
+------------------- Index sizes
+
+SELECT
+OBJECT_SCHEMA_NAME(i.OBJECT_ID) AS SchemaName,
+OBJECT_NAME(i.OBJECT_ID) AS TableName,
+i.name AS IndexName,
+i.index_id AS IndexID,
+8 * SUM(a.used_pages) AS 'Indexsize(KB)'
+FROM sys.indexes AS i
+JOIN sys.partitions AS p ON p.OBJECT_ID = i.OBJECT_ID AND p.index_id = i.index_id
+JOIN sys.allocation_units AS a ON a.container_id = p.partition_id
+--where i.OBJECT_ID= object_id('MPortfolio')
+GROUP BY i.OBJECT_ID,i.index_id,i.name
+ORDER BY 
+--OBJECT_NAME(i.OBJECT_ID),i.index_id
+SUM(a.used_pages) desc
+go
+
+use AF
+set transaction isolation level read uncommitted
+-- Get fragmentation info for all indexes above a certain size in the current database  (Query 69) (Index Fragmentation)
+-- Note: This query could take some time on a very large database
+SELECT DB_NAME(ps.database_id) AS [Database Name], SCHEMA_NAME(o.[schema_id]) AS [Schema Name],
+OBJECT_NAME(ps.OBJECT_ID) AS [Object Name], i.[name] AS [Index Name], ps.index_id, 
+ps.index_type_desc, ps.avg_fragmentation_in_percent, 
+ps.fragment_count, ps.page_count, i.fill_factor, i.has_filter, 
+i.filter_definition, i.[allow_page_locks]
+FROM sys.dm_db_index_physical_stats(DB_ID(),NULL, NULL, NULL , N'LIMITED') AS ps
+INNER JOIN sys.indexes AS i WITH (NOLOCK)
+ON ps.[object_id] = i.[object_id] 
+AND ps.index_id = i.index_id
+INNER JOIN sys.objects AS o WITH (NOLOCK)
+ON i.[object_id] = o.[object_id]
+WHERE ps.database_id = DB_ID()
+AND ps.page_count > 2500
+ORDER BY ps.avg_fragmentation_in_percent DESC OPTION (RECOMPILE);
+
+------------ Get Fragmented indexes
+set transaction isolation level read uncommitted
+go
+SELECT OBJECT_NAME(ind.OBJECT_ID) AS TableName, 
+ind.name AS IndexName, indexstats.index_type_desc AS IndexType, 
+indexstats.avg_fragmentation_in_percent 
+FROM sys.dm_db_index_physical_stats(DB_ID(), NULL, NULL, NULL, NULL) indexstats 
+INNER JOIN sys.indexes ind with (nolock)
+ON ind.object_id = indexstats.object_id 
+AND ind.index_id = indexstats.index_id 
+WHERE indexstats.avg_fragmentation_in_percent > 30 
+--and (ind.object_id) =1193107341
+ORDER BY indexstats.avg_fragmentation_in_percent DESC
+go
+
+
+--sp_helpdb
+sp_help MPortfolio
+
+exec msdb..sp__dbinfo
+sp_who [icaton\prokunin]
+
+sp_spaceused dba_procmon_plans 
+name				rows		reserved		data			index_size	unused
+dba_procmon_plans	2649764     133163048 KB	133044752 KB	109320 KB	8976 KB
+
+sp_spaceused dba_procmon
+name				rows		reserved		data			index_size	unused
+dba_procmon			723364551   385101560 KB	380095168 KB	4475744 KB	530648 KB
+
+select min(section_date) from dba_procmon
+
+
+sp_help AssetOnOperPlace
+sp_spaceused CpOnOperplace
+select 134748168/1024.0
+select top 100 * from CpOnOperplace
+
+use AtonBase
+exec sp_spaceused tblRepresentativeCompany
+exec sp_spaceused tblCompanyTerminal
+exec sp_spaceused Client
+exec sp_spaceused Representative
+
+sp_help tblRepresentativeCompany
+sp_help tblCompanyTerminal
+sp_help Client
+sp_help Representative
+sp_help Counterparty
+sp_help CpOnOperPlace
+sp_help DBuser
+sp_help OperLink
+select name + ',' from syscolumns where id=object_id('Counterparty')
+
+
+exec xp_fixeddrives
+exec msdb..sp__dbinfo 
