@@ -22,6 +22,5 @@ $Indir = "$InDir\$DayBeforeYest"
 
 
 foreach ($Mask in $Masks) {
-    Get-ChildItem -Path "$InDir\*" -Include "$Mask*.htm" | Copy-Item -Destination $OutDir\$DayBeforeYest
-    Get-ChildItem -Path "$InDir\*" -Include "$Mask*.xml" | Copy-Item -Destination $OutDir\$DayBeforeYest
+    Get-ChildItem -Path "$InDir\*" -Include "$Mask*.htm", "$Mask*.xml" | Copy-Item -Destination $OutDir\$DayBeforeYest
 }
