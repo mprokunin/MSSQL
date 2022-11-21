@@ -1,18 +1,18 @@
 CREATE EVENT SESSION [CatchDropTable] ON SERVER 
 ADD EVENT sqlserver.metadata_ddl_add_column(
-    ACTION(sqlserver.client_app_name,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
+    ACTION(sqlserver.client_app_name,sqlserver.client_hostname,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
     WHERE ([sqlserver].[database_name]=N'PBI')),
 ADD EVENT sqlserver.metadata_ddl_drop_column(
-    ACTION(sqlserver.client_app_name,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
+    ACTION(sqlserver.client_app_name,sqlserver.client_hostname,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
     WHERE ([sqlserver].[database_name]=N'PBI')),
 ADD EVENT sqlserver.object_altered(
-    ACTION(sqlserver.client_app_name,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
+    ACTION(sqlserver.client_app_name,sqlserver.client_hostname,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
     WHERE ([sqlserver].[database_name]=N'PBI')),
 ADD EVENT sqlserver.object_created(
-    ACTION(sqlserver.client_app_name,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
+    ACTION(sqlserver.client_app_name,sqlserver.client_hostname,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
     WHERE ([sqlserver].[equal_i_sql_unicode_string]([sqlserver].[database_name],N'PBI') AND [database_id]=(7))),
 ADD EVENT sqlserver.object_deleted(
-    ACTION(sqlserver.client_app_name,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
+    ACTION(sqlserver.client_app_name,sqlserver.client_hostname,sqlserver.database_name,sqlserver.nt_username,sqlserver.sql_text,sqlserver.username)
     WHERE ([sqlserver].[equal_i_sql_unicode_string]([sqlserver].[database_name],N'PBI') AND [database_id]=(7)))
 ADD TARGET package0.event_file(SET filename=N'D:\DOC\CatchDropTable.xel',max_file_size=(100))
 WITH (MAX_MEMORY=4096 KB,EVENT_RETENTION_MODE=ALLOW_SINGLE_EVENT_LOSS,MAX_DISPATCH_LATENCY=30 SECONDS,MAX_EVENT_SIZE=0 KB,MEMORY_PARTITION_MODE=NONE,TRACK_CAUSALITY=OFF,STARTUP_STATE=OFF)
