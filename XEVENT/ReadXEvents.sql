@@ -19,11 +19,13 @@ WITH (MAX_MEMORY=4096 KB,EVENT_RETENTION_MODE=ALLOW_SINGLE_EVENT_LOSS,MAX_DISPAT
 GO
 
 
-select xdata.value(N'(event/@timestamp)[1]', N'datetime') AT TIME ZONE 'UTC' AT TIME ZONE 'Russian Standard Time'
-,xdata.value(N'(event/action[@name="database_name"]/value)[1]', N'nvarchar(max)') [Database_name]
-,xdata.value(N'(event/action[@name="client_hostname"]/value)[1]', N'nvarchar(max)') [Client_hostname]
-,xdata.value(N'(event/action[@name="client_app_name"]/value)[1]', N'nvarchar(max)') [Client_app_name]
-,xdata.value(N'(event/action[@name="username"]/value)[1]', N'nvarchar(max)') [Username]
+
+select xdata.value(N'(event/@timestamp)[1]', N'datetime') AT TIME ZONE 'UTC' AT TIME ZONE 'Russian Standard Time' [DateTime]
+,xdata.value(N'(event/action[@name="database_name"]/value)[1]', N'sysname') [Database_name]
+,xdata.value(N'(event/action[@name="client_hostname"]/value)[1]', N'nvarchar(100)') [Client_hostname]
+,xdata.value(N'(event/action[@name="client_app_name"]/value)[1]', N'nvarchar(100)') [Client_app_name]
+,xdata.value(N'(event/action[@name="username"]/value)[1]', N'nvarchar(100)') [Username]
+,xdata.value(N'(event/data[@name="ddl_phase"]/text)[1]', N'nvarchar(20)') [Ddl_phase]
 ,xdata.value(N'(event/action[@name="sql_text"]/value)[1]', N'nvarchar(max)') [Sql_text]
 FROM    ( SELECT    CAST(event_data AS XML)
           FROM      sys.fn_xe_file_target_read_file('D:\DOC\CatchDropTable*.xel',
