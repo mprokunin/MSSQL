@@ -10,3 +10,30 @@ SELECT @@OPTIONS AS [user_options],
        CASE WHEN @@OPTIONS & 1342 = 1342 THEN 'ON' ELSE 'OFF' END AS [ansi_defaults]
 ------------- or
 DBCC USEROPTIONS;  
+-------------- For active sessions
+
+SELECT
+   session_id Session_Id,
+   login_name LoginName,
+   host_name HostName,
+   login_time LoginTime,
+   DB_NAME(database_id) DatabaseName,
+   program_name ProgramName,
+   [status] Status,
+   text_size,
+   language,
+   date_format,
+   date_first,
+   quoted_identifier,
+   arithabort,
+   ansi_null_dflt_on,
+   ansi_defaults,
+   ansi_warnings,
+   ansi_padding,
+   ansi_nulls,
+   concat_null_yields_null
+FROM
+   sys.dm_exec_sessions
+WHERE
+   is_user_process = 1
+   
