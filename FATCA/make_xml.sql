@@ -1,4 +1,5 @@
 -- https://www.irs.gov/pub/irs-pdf/p5124.pdf
+-- Use https://www.microsoft.com/en-us/download/details.aspx?id=54920 to load Excel file to MSSQL tables header & clients
 --select @@VERSION
 --use [TestDB]
 --go
